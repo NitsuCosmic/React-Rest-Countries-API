@@ -8,7 +8,7 @@ export const CountryCard = ({ country }) => {
 				<h2 className="font-bold text-lg mb-3">{country.name}</h2>
 				<p>
 					<span className="font-semibold">Population:</span>{" "}
-					{country.population}
+					{country.population.toLocaleString()}
 				</p>
 				<p>
 					<span className="font-semibold">Region:</span> {country.region}
