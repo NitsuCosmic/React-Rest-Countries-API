@@ -1,7 +1,15 @@
+import { NavBar } from "./components/layout/NavBar";
+import { HomePage } from "./pages/HomePage";
+
 function App() {
 	return (
 		<>
-			<h1>hello world</h1>
+			<header className="shadow-md relative">
+				<NavBar />
+			</header>
+			<main className="font-nunito bg-[hsl(0,0%,98%)] min-h-screen">
+				<HomePage />
+			</main>
 		</>
 	);
 }
