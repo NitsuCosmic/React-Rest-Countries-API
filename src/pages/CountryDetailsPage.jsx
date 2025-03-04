@@ -1,11 +1,12 @@
 import React from "react";
-import { NavLink, useParams } from "react-router";
+import { NavLink, useNavigate, useParams } from "react-router";
 import data from "../../data.json";
 import { InfoItem } from "../components/InfoItem";
 import { InfoSection } from "../components/InfoSection";
 import arrowLeft from "../design/chevron-back-outline.svg";
 
 export const CountryDetailsPage = () => {
+	const navigate = useNavigate();
 	const { countryName } = useParams();
 
 	// Find country in data
@@ -29,13 +30,13 @@ export const CountryDetailsPage = () => {
 		<div className="p-3 max-w-screen-2xl mx-auto">
 			{/* Back Button */}
 			<div className="my-6">
-				<NavLink
-					to="/"
+				<button
+					onClick={() => navigate(-1)}
 					className="flex items-center gap-2 w-fit px-4 py-2 rounded shadow-md cursor-pointer bg-white hover:bg-neutral-100 transition-colors"
 				>
 					<img src={arrowLeft} alt="Back" className="w-6" />
 					Back
-				</NavLink>
+				</button>
 			</div>
 
 			<section className="flex flex-col gap-4 lg:flex-row lg:gap-10">
