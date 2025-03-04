@@ -1,51 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { useFilters } from "../hooks/useFilters";
 
 export const Filters = ({ countries, setCountries }) => {
-	const [filters, setFilters] = useState({
-		region: "all",
-		order: "asc",
-		sortBy: "name", // Default sorting by name
-	});
-
-	const handleRegionChange = (e) => {
-		setFilters((prev) => ({ ...prev, region: e.target.value }));
-	};
-
-	const handleOrderChange = (e) => {
-		setFilters((prev) => ({ ...prev, order: e.target.value }));
-	};
-
-	const handleSortByChange = (e) => {
-		setFilters((prev) => ({ ...prev, sortBy: e.target.value }));
-	};
-
-	useEffect(() => {
-		const filterCountries = () => {
-			// Always create a new copy before filtering or sorting
-			let filteredCountries =
-				filters.region === "all"
-					? [...countries]
-					: countries.filter((country) => country.region === filters.region);
-
-			// Sorting logic (name or population)
-			filteredCountries.sort((a, b) => {
-				let valueA = filters.sortBy === "name" ? a.name : a.population;
-				let valueB = filters.sortBy === "name" ? b.name : b.population;
-
-				if (filters.sortBy === "name") {
-					return filters.order === "asc"
-						? valueA.localeCompare(valueB)
-						: valueB.localeCompare(valueA);
-				} else {
-					return filters.order === "asc" ? valueA - valueB : valueB - valueA;
-				}
-			});
-
-			setCountries(filteredCountries);
-		};
-
-		filterCountries();
-	}, [filters, countries, setCountries]);
+	const { filters, handleOrderChange, handleRegionChange, handleSortByChange } =
+		useFilters(countries, setCountries);
 
 	return (
 		<section className="flex items-center gap-2 flex-wrap">
@@ -53,7 +11,7 @@ export const Filters = ({ countries, setCountries }) => {
 			<select
 				onChange={handleOrderChange}
 				value={filters.order}
-				className="bg-white rounded p-2 shadow-lg"
+				className={`bg-white rounded p-2 shadow-lg dark:text-white dark:bg-[hsl(209,23%,22%)] transition-colors`}
 			>
 				<option value="asc">Ascendant</option>
 				<option value="desc">Descendant</option>
@@ -63,7 +21,7 @@ export const Filters = ({ countries, setCountries }) => {
 			<select
 				onChange={handleSortByChange}
 				value={filters.sortBy}
-				className="bg-white rounded p-2 shadow-lg"
+				className={`bg-white rounded p-2 shadow-lg dark:text-white dark:bg-[hsl(209,23%,22%)] transition-colors`}
 			>
 				<option value="name">Sort by Name</option>
 				<option value="population">Sort by Population</option>
@@ -73,7 +31,7 @@ export const Filters = ({ countries, setCountries }) => {
 			<select
 				onChange={handleRegionChange}
 				value={filters.region}
-				className="bg-white rounded p-2 shadow-lg"
+				className={`bg-white rounded p-2 shadow-lg dark:text-white dark:bg-[hsl(209,23%,22%)] transition-colors`}
 			>
 				<option value="all">All Regions</option>
 				<option value="Africa">Africa</option>

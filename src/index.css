@@ -4,3 +4,5 @@
 @theme {
 	--font-nunito: "Nunito Sans", system-ui, sans-serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));

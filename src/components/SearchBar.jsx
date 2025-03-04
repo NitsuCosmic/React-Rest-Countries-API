@@ -22,7 +22,7 @@ export const SearchBar = ({ setCountryQuery }) => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="flex gap-2 w-full max-w-md bg-white shadow-lg rounded-md px-4"
+			className={`flex gap-2 w-full max-w-md bg-white shadow-lg rounded-md px-4 dark:bg-[hsl(209,23%,22%)] transition-colors`}
 		>
 			<img src={searchIcon} alt="Search icon" className="w-5" />
 			<input
@@ -30,7 +30,7 @@ export const SearchBar = ({ setCountryQuery }) => {
 				onChange={handleChange}
 				type="text"
 				placeholder="Search for a country..."
-				className="w-full py-3 outline-none"
+				className={`w-full py-3 outline-none placeholder:text-neutral-400 dark:text-white dark:placeholder:text-white transition-colors`}
 			/>
 			<button
 				type="reset"

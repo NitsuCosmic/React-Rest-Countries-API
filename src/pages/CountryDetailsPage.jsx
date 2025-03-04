@@ -4,10 +4,12 @@ import data from "../../data.json";
 import { InfoItem } from "../components/InfoItem";
 import { InfoSection } from "../components/InfoSection";
 import arrowLeft from "../design/chevron-back-outline.svg";
+import useThemeContext from "../hooks/useThemeContext";
 
 export const CountryDetailsPage = () => {
 	const navigate = useNavigate();
 	const { countryName } = useParams();
+	const { theme } = useThemeContext();
 
 	// Find country in data
 	const country = data.find(
@@ -17,11 +19,15 @@ export const CountryDetailsPage = () => {
 	// Handle case where country is not found
 	if (!country) {
 		return (
-			<div className="text-center mt-10">
+			<div className={`text-center mt-10 dark:text-white ${theme}`}>
 				<h2 className="text-xl font-bold">Country not found</h2>
-				<NavLink to="/" className="text-blue-500 underline mt-4 inline-block">
-					Go Back
-				</NavLink>
+				<button
+					onClick={() => navigate(-1)}
+					className="flex items-center gap-2 w-fit px-4 py-2 rounded shadow-md cursor-pointer bg-white hover:bg-neutral-100 transition-colors"
+				>
+					<img src={arrowLeft} alt="Back" className="w-6" />
+					Back
+				</button>
 			</div>
 		);
 	}
@@ -32,14 +38,16 @@ export const CountryDetailsPage = () => {
 			<div className="my-6">
 				<button
 					onClick={() => navigate(-1)}
-					className="flex items-center gap-2 w-fit px-4 py-2 rounded shadow-md cursor-pointer bg-white hover:bg-neutral-100 transition-colors"
+					className="flex items-center gap-2 w-fit px-4 py-2 rounded shadow-md cursor-pointer bg-white hover:bg-neutral-100 dark:hover:bg-[hsl(207,26%,17%)] dark:text-white dark:bg-[hsl(209,23%,22%)] transition-colors"
 				>
 					<img src={arrowLeft} alt="Back" className="w-6" />
 					Back
 				</button>
 			</div>
 
-			<section className="flex flex-col gap-4 lg:flex-row lg:gap-10">
+			<section
+				className={`flex flex-col gap-4 lg:flex-row lg:gap-10 dark:text-white`}
+			>
 				{/* Country Flag */}
 				<div className="md:w-[50%]">
 					<img
@@ -93,7 +101,7 @@ export const CountryDetailsPage = () => {
 										<NavLink
 											key={index}
 											to={`/country/${borderCountry.name.toLowerCase()}`}
-											className="w-fit px-4 py-2 rounded shadow-md cursor-pointer bg-white hover:bg-neutral-100 transition-colors"
+											className="w-fit px-4 py-2 rounded shadow-md cursor-pointer bg-white hover:bg-neutral-100 dark:bg-[hsl(209,23%,22%)] dark:hover:bg-[hsl(207,26%,17%)] transition-colors"
 										>
 											{borderCountry.name}
 										</NavLink>
