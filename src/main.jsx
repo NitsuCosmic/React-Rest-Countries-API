@@ -10,7 +10,7 @@ import { NotFoundPage } from "./pages/NotFoundPage.jsx";
 
 createRoot(document.getElementById("root")).render(
 	<ThemeContextProvider>
-		<BrowserRouter>
+		<BrowserRouter basename="/React-Rest-Countries-API">
 			<StrictMode>
 				<Routes>
 					<Route path="/" element={<App />}>

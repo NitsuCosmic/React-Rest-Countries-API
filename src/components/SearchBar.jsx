@@ -32,11 +32,7 @@ export const SearchBar = ({ setCountryQuery }) => {
 				placeholder="Search for a country..."
 				className={`w-full py-3 outline-none placeholder:text-neutral-400 dark:text-white dark:placeholder:text-white transition-colors`}
 			/>
-			<button
-				type="reset"
-				onClick={handleClick}
-				className="cursor-pointer hover:bg-neutral-200 transition-colors"
-			>
+			<button type="reset" onClick={handleClick} className="cursor-pointer">
 				<img src={resetIcon} alt="Reset icon" className="w-6" />
 			</button>
 		</form>
