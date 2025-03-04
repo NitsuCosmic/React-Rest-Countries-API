@@ -3,9 +3,14 @@ import { NavLink } from "react-router";
 
 export const CountryCard = ({ country }) => {
 	return (
-		<div className="rounded overflow-hidden shadow-md">
+		<div className="rounded overflow-hidden shadow-md max-w-[500px]">
 			<NavLink to={`country/${country.name}`}>
-				<img src={country.flag} alt="" className="w-full aspect-[16/10]" />
+				<img
+					src={country.flag}
+					alt=""
+					className="w-full aspect-[16/10]"
+					loading="lazy"
+				/>
 			</NavLink>
 			<div className="p-4">
 				<NavLink to={`country/${country.name}`}>
